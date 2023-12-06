@@ -1,20 +1,28 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import myImage from './../images/banner_8.jpg';
 import CardComponent from "../Components/CardComponent";
 import {useSpinner} from "../contexts/SpinnerContext";
+import {useNotificationToast} from "../contexts/NotificationToastContext";
+import api from "../api/api";
 
 const Home = () => {
     const {showSpinner, hideSpinner} = useSpinner();
+    const {showNotificationToast, setNotificationToastMessageText} = useNotificationToast();
     const [ipInfo, setIpInfo] = useState(null);
 
     const getIp = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/ip/info');
+            const response = await api.get('/ip/info');
             setIpInfo(response.data.data.info);
             hideSpinner();
         } catch (error) {
-            console.error('Error fetching data:', error.message);
+            if (error.response.status === 400)
+            {
+                showNotificationToast();
+                setNotificationToastMessageText(error.response.data.errorMessage);
+            } else {
+                showNotificationToast();
+                setNotificationToastMessageText(error.message);
+            }
         }
     };
 
@@ -32,8 +40,8 @@ const Home = () => {
                             <CardComponent title='Your IP address' content={ipInfo ? ipInfo.ip : ''}/>
                             <CardComponent title='Your Country' content={ipInfo ? ipInfo.country_name : ''}/>
                             {/*<CardComponent title='ISP' content='Georgia'/>*/}
-                            <CardComponent title='IP Type' content={ipInfo ? ipInfo.type : ''} />
-                            <CardComponent title='City' content={ipInfo ? ipInfo.city : ''} />
+                            <CardComponent title='IP Type' content={ipInfo ? ipInfo.type : ''}/>
+                            <CardComponent title='City' content={ipInfo ? ipInfo.city : ''}/>
                         </div>
                     </div>
                 </div>

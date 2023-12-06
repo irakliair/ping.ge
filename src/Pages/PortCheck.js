@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import api from "../api/api";
 
 const Ping = () => {
     const [ip, setIp] = useState('');
@@ -9,7 +9,7 @@ const Ping = () => {
 
     const fetchData = async (ip, port) => {
         try {
-            const response = await axios.post('http://localhost:8000/api/check-port', {
+            const response = await api.post('/check-port', {
                 ip: ip,
                 port: port
             });
