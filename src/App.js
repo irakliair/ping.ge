@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Route, Routes} from 'react-router-dom';
+import Ping from './Pages/Ping';
+import PortCheck from './Pages/PortCheck';
+import NavComponent from './Components/NavComponent';
+import Home from './Pages/Home';
+import Spinner from "./Components/Spinner";
+import {useSpinner} from "./contexts/SpinnerContext"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const {spinner} = useSpinner();
+
+    return (
+        <div className="bg-[#f8fafc] relative">
+            {/*{spinner && <Spinner/>}*/}
+            {/*{!spinner && <>*/}
+                <NavComponent/>
+                <Routes>
+                    <Route path="/ping" element={<Ping/>}/>
+                    <Route path="/port-check" element={<PortCheck/>}/>
+                    <Route path="/" element={<Home/>}/>
+                </Routes>
+            {/*</>*/}
+            {/*}*/}
+        </div>
+    );
 }
 
 export default App;
