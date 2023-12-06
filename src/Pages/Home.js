@@ -12,10 +12,10 @@ const Home = () => {
         try {
             const response = await axios.get('http://localhost:8000/api/ip/info');
             setIpInfo(response.data.data.info);
+            hideSpinner();
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error('Error fetching data:', error.message);
         }
-        hideSpinner();
     };
 
     useEffect(() => {
