@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ping.ge/static/css/main.8a438411.css",
+    "main.js": "/ping.ge/static/js/main.440289c9.js",
+    "static/js/787.0d7b19b4.chunk.js": "/ping.ge/static/js/787.0d7b19b4.chunk.js",
+    "static/media/banner_8.jpg": "/ping.ge/static/media/banner_8.a1dca88178e6f00cfa9d.jpg",
+    "index.html": "/ping.ge/index.html",
+    "main.8a438411.css.map": "/ping.ge/static/css/main.8a438411.css.map",
+    "main.440289c9.js.map": "/ping.ge/static/js/main.440289c9.js.map",
+    "787.0d7b19b4.chunk.js.map": "/ping.ge/static/js/787.0d7b19b4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8a438411.css",
+    "static/js/main.440289c9.js"
+  ]
+}
