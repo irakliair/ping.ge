@@ -18,6 +18,7 @@ function App() {
                 <NavComponent/>
                 <Routes>
                     <Route path="/ping" element={<Ping/>}/>
+                    <Route path="/ping.ge" element={<Home/>}/>
                     <Route path="/port-check" element={<PortCheck/>}/>
                     <Route path="/" element={<Home/>}/>
                 </Routes>
