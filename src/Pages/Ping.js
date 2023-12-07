@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import CardLoading from "../Components/CardLoading";
+import api from "../api/api";
 
 const Ping = () => {
     const [data, setData] = useState([]);
@@ -11,7 +11,7 @@ const Ping = () => {
 
     const fetchData = async (ip) => {
         try {
-            const response = await axios.post('http://localhost:8000/api/ping', {
+            const response = await api.post('/ping', {
                 ip: ip
             });
             setData(response.data);

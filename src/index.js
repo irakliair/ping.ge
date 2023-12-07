@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {SpinnerProvider} from "./contexts/SpinnerContext";
+import {NotificationToastProvider} from "./contexts/NotificationToastContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
         <SpinnerProvider>
-            <App/>
+            <NotificationToastProvider>
+                <App/>
+            </NotificationToastProvider>
         </SpinnerProvider>
     </Router>
 );
