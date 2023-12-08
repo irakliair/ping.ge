@@ -1,11 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import api from "../api/api";
+import {useHelmet} from "../contexts/HelmetContext";
 
 const Ping = () => {
     const [ip, setIp] = useState('');
     const [port, setPort] = useState('');
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const {setHelmet} = useHelmet();
+    const helmetData = {
+        title: 'Port check, Ping, Online Ping, Traceroute, Country by IP, Your IP',
+        description: 'Port check, Ping, Online Ping, Traceroute, Country by IP, Your IP',
+        name: '',
+        type: 'article'
+    };
+
+    useEffect(() => {
+        setHelmet(helmetData)
+    }, []);
 
     const fetchData = async (ip, port) => {
         try {

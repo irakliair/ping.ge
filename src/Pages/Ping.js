@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import CardLoading from "../Components/CardLoading";
 import api from "../api/api";
+import {useHelmet} from "../contexts/HelmetContext";
 
 const Ping = () => {
     const [data, setData] = useState([]);
@@ -8,6 +9,13 @@ const Ping = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [ip, setIp] = useState('');
     const [loading, setLoading] = useState(false);
+    const {setHelmet} = useHelmet();
+    const helmetData = {
+        title: 'Ping, Online Ping, Traceroute, Port check, Country by IP, Your IP',
+        description: 'Ping, Online Ping, Traceroute, Port check, Country by IP, Your IP',
+        name: '',
+        type: 'article'
+    };
 
     const fetchData = async (ip) => {
         try {
@@ -22,8 +30,7 @@ const Ping = () => {
     };
 
     useEffect(() => {
-
-        // fetchData();
+        setHelmet(helmetData)
     }, []);
 
     useEffect(() => {

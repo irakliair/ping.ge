@@ -3,11 +3,13 @@ import CardComponent from "../Components/CardComponent";
 import {useSpinner} from "../contexts/SpinnerContext";
 import {useNotificationToast} from "../contexts/NotificationToastContext";
 import api from "../api/api";
+import {useHelmet} from "../contexts/HelmetContext";
 
 const Home = () => {
     const {showSpinner, hideSpinner} = useSpinner();
     const {showNotificationToast, setNotificationToastMessageText} = useNotificationToast();
     const [ipInfo, setIpInfo] = useState(null);
+    const {clearHelmet} = useHelmet();
 
     const getIp = async () => {
         try {
@@ -15,10 +17,14 @@ const Home = () => {
             setIpInfo(response.data.data.info);
             hideSpinner();
         } catch (error) {
-            if (error.response.status === 400)
-            {
-                showNotificationToast();
-                setNotificationToastMessageText(error.response.data.errorMessage);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    showNotificationToast();
+                    setNotificationToastMessageText(error.response.data.errorMessage);
+                } else {
+                    showNotificationToast();
+                    setNotificationToastMessageText(error.message);
+                }
             } else {
                 showNotificationToast();
                 setNotificationToastMessageText(error.message);
@@ -27,6 +33,7 @@ const Home = () => {
     };
 
     useEffect(() => {
+        clearHelmet()
         showSpinner()
         getIp();
     }, []);

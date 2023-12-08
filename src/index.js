@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {SpinnerProvider} from "./contexts/SpinnerContext";
 import {NotificationToastProvider} from "./contexts/NotificationToastContext";
+import {HelmetProvider} from "./contexts/HelmetContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
         <SpinnerProvider>
             <NotificationToastProvider>
-                <App/>
+                <HelmetProvider>
+                    <App/>
+                </HelmetProvider>
             </NotificationToastProvider>
         </SpinnerProvider>
     </Router>
